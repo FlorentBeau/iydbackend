@@ -1,0 +1,7 @@
+{
+  "name": "intoyourdream-backend",
+  "version": "0.0.1",
+  "devDependencies": {
+    "express": "3.x.x"
+  }
+}
