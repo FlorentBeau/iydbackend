@@ -1,0 +1,20 @@
+doctype 5
+html(lang="en")
+  head
+    title Dream moderation
+  body
+    h1 LOL. DREAMZ.
+    section.dreams
+      if dreams
+        each dream in dreams
+          section.dream
+            p YES: #{dream.yes} - NO: #{dream.no}
+            p= dream.dream
+            p= dream.sex
+            ul.actions
+              li
+                a(href="/moderate/#{dream.id}/visible") visible
+              li
+                a(href="/moderate/#{dream.id}/remove") remove
+      else
+        p NO DREAMZ.
