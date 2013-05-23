@@ -72,8 +72,15 @@ app.get('/moderate/:dream_id/remove', express.basicAuth('flo', 'rambo'), functio
 });
 
 app.get('/dreams', function(req, res) {
-  var query = Dream.find(req.query).sort( {_id: -1} ).exec();
-  res.set({ 'Content-Type': 'application/json' });
+  var PAGE_ITEMS = 10;
+  var condition = req.query.condition,
+    page = req.query.page || 0;
+
+  var query = Dream.find(condition)
+  .sort( {_id: -1} )
+  .skip(page * PAGE_ITEMS)
+  .limit(PAGE_ITEMS)
+  .exec();
 
   query.then(function(dreams) {
     var resDreams = [];
@@ -82,6 +89,7 @@ app.get('/dreams', function(req, res) {
       resDreams.push(serializeDream(dream));
     });
 
+    res.set({ 'Content-Type': 'application/json' });
     res.send(JSON.stringify({
       dreams: resDreams
     }));

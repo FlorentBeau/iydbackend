@@ -1,20 +1,23 @@
 video {
   position: fixed;
   top: 0;
-  bottom: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1000;
-  overflow: hidden; }
+  bottom: 0; 
+  right: 0; 
+  min-width: 100%; 
+  min-height: 100%; 
+  z-index: -1000; 
+  overflow: hidden
+}
 
 html, body {
   margin: 0;
   font-family: 'Average Sans';
-  height: 100%; }
+  height: 100%;
+}
 
 .ember-view {
-  height: 100%; }
+  height: 100%;
+}
 
 .container {
   width: 800px;
@@ -24,120 +27,153 @@ html, body {
   background-color: #FFF;
   margin-left: auto;
   margin-right: auto;
-  /*    -moz-box-shadow: 10px 5px 5px black;
-  -webkit-box-shadow: 10px 5px 5px black;*/
-  /*box-shadow: 0px 0px 30px black;*/ }
+/*    -moz-box-shadow: 10px 5px 5px black;
+-webkit-box-shadow: 10px 5px 5px black;*/
+        /*box-shadow: 0px 0px 30px black;*/
+}
 
 header.masthead {
   width: 400px;
   margin: 0 auto;
-  padding-top: 40px; }
+  padding-top: 40px;
+}
 
 header.masthead h1 {
   font-family: 'Press Start 2P';
   font-size: 3.6em;
   margin: 0;
-  /*line-height: 30px;*/ }
+  /*line-height: 30px;*/
+}
 
 header.masthead h2 {
   font-family: 'Average Sans';
   margin: 0;
   font-weight: 400;
-  font-size: 0.8em; }
+  font-size: 0.8em;
+}
 
 header.masthead hgroup {
   color: #000;
-  text-align: center; }
+  text-align: center;
+}
 
 header.masthead a {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 header.masthead nav {
-  margin-top: 15px; }
+  margin-top: 15px;
+}
 
 header.masthead nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: center; }
+  text-align: center;
+}
 
 header.masthead nav ul li {
-  display: inline; }
+  display: inline;
+}
 
 header.masthead {
-  margin-bottom: 100px; }
+  margin-bottom: 100px;
+}
 
 a {
   color: #023373;
   text-decoration: none;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 a:hover {
-  color: #CF5C55; }
+  color: #CF5C55;
+}
 
 article.dream {
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+}
 
 article.dream p {
   margin: 0;
-  font-size: 17px; }
+  font-size: 17px;
+}
 
 article.dream p.content {
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+}
 
 article.dream footer {
-  font-size: 15px; }
+  font-size: 15px;
+}
 
 .wrapper {
   width: 600px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 .main p {
   margin-top: 100px;
-  text-align: center; }
+  text-align: center;
+}
 
 .dream-form textarea {
   width: 400px;
-  height: 100px; }
+  height: 100px;
+}
 
 .dream-form select {
   display: inline-block;
   float: right;
-  width: 120px; }
+  width: 120px;
+}
 
 .dream-form input {
-  width: 200px; }
+  width: 200px;
+}
 
 .dream-form button {
   margin-top: 30px;
-  float: right; }
+  float: right;
+}
 
 .moderation-box footer {
   margin-top: 50px;
-  text-align: center; }
+  text-align: center;
+}
 
 .comments textarea {
   width: 395px;
-  height: 100px; }
+  height: 100px;
+}
 
 .comments .pseudo {
   margin-top: 10px;
   text-align: right;
-  width: 400px; }
+  width: 400px;
+}
 
 .comments button {
   margin-left: 10px;
-  margin-right: 0; }
+  margin-right: 0;
+}
 
 .comments h1 {
-  font-size: 17px; }
+  font-size: 17px;
+}
 
-.dreams-list ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center; }
-  .dreams-list ul .next {
-    float: right; }
-  .dreams-list ul .prev {
-    float: left; }
+.dreams-list {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    .next {
+      float: right;
+    }
+    .prev {
+      float: left;
+    }
+  }
+}

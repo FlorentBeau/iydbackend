@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <title>Into Your Dream</title>
   <link rel="stylesheet" href="css/normalize.css">
-  <link href='http://fonts.googleapis.com/css?family=Condiment|Average+Sans|News+Cycle:400,700|Amatic+SC:400,700|Satisfy|Oswald:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Condiment|Average+Sans|News+Cycle:400,700|Amatic+SC:400,700|Satisfy|Oswald:400,300|Roboto+Slab:400,700,300,100|Press+Start+2P' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <script type="text/x-handlebars">
+  <div class="container">
     {{#linkTo 'dreams'}}
     <header class="masthead">
       <hgroup>
@@ -33,6 +34,7 @@
     <footer class="main">
       <p>Copyright Into Your Dream</p>
     </footer>
+  </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name="write">
@@ -54,6 +56,15 @@
     {{else}}
       <p>Sorry, no dreams available.</p>
     {{/each}}
+
+    <nav>
+      <ul>
+        {{#unless firstPage}}
+        <li class="prev"><a {{action 'prevPage'}}>Previous</li>
+        {{/unless}}
+        <li class="next"><a {{action 'nextPage'}}>Next</a></li>
+      </ul>
+    </nav>
     </section>
   </script>
 

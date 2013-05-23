@@ -13,9 +13,7 @@ App.genre = ["Male", "Female", "Not sure"];
 
 App.Store = DS.Store.extend({
   revision: 12,
-  adapter: DS.RESTAdapter.extend({
-    url: 'http://localhost:5000'
-  })
+  adapter: DS.RESTAdapter.extend({})
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -26,7 +24,7 @@ App.IndexRoute = Ember.Route.extend({
 
 App.DreamsRoute = Ember.Route.extend({
   model: function() {
-    return App.Dream.find({visible: true});
+    return App.Dream.find({query: {visible: true}});
   }
 });
 
@@ -121,14 +119,6 @@ App.WriteController = Ember.ObjectController.extend({
   }
 });
 
-App.DreamRoute = Ember.Route.extend({
-  // setupController: function(controller, model) {
-  //   controller.set('fetchedComments', App.Comment.find({
-  //     dream_id: model.id
-  //   }));
-  // }
-});
-
 App.DreamController = Ember.ObjectController.extend({
   postComment: function() {
     if (!this.get('content.comment_message') ||
@@ -168,6 +158,28 @@ App.DreamController = Ember.ObjectController.extend({
       dream.get('transaction').commit();
       localStorage.setItem(dream.id, true);
     }
+  }
+});
+
+App.DreamsController = Ember.ArrayController.extend({
+  currentPage: 0,
+  firstPage: function() {
+    return (this.get('currentPage') === 0) ? true : false;
+  }.property('currentPage'),
+
+  getPage: function() {
+    this.set('model', App.Dream.find({
+      query: { visible: true },
+      page: this.get('currentPage')
+    }));
+  }.observes('currentPage'),
+
+  nextPage: function() {
+    this.incrementProperty('currentPage');
+  },
+
+  prevPage: function() {
+    this.decrementProperty('currentPage');
   }
 });
 
