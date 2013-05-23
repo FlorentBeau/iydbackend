@@ -1,3 +1,5 @@
+// We use new relic to ping the heroku app, preventing it from going idle.
+require('newrelic');
 var express = require('express'),
   app = express(),
   mongoose = require('mongoose'),
