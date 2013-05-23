@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Into Your Dream</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href='http://fonts.googleapis.com/css?family=Condiment|Average+Sans|News+Cycle:400,700|Amatic+SC:400,700|Satisfy|Oswald:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars">
+    {{#linkTo 'dreams'}}
+    <header class="masthead">
+      <hgroup>
+        <h1>Into Your Dream</h1>
+        <h2>Dreams are often most profound when they seem the most crazy.</h2>
+      </hgroup>
+    {{/linkTo}}
+
+      <nav>
+        <ul>
+          <li>{{#linkTo 'write'}}Tell a dream{{/linkTo}}</li> -
+          <li>{{#linkTo 'moderate'}}Moderate{{/linkTo}}</li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="wrapper">
+      {{outlet}}
+    </div>
+
+    <footer class="main">
+      <p>Copyright Into Your Dream</p>
+    </footer>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="write">
+    <section class="dream-form">
+      <p>{{view Ember.TextArea valueBinding="dream"}}</p>
+      Pseudo: {{view Ember.TextField valueBinding="pseudo"}}
+      {{view Ember.Select contentBinding="App.genre" valueBinding="sex"}}
+      <button {{action 'submit'}}>Create</button>
+      {{#if errorState}}
+      <p>Please fill-out every fields.</p>
+      {{/if}}
+    </section>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="dreams">
+    <section class="dreams-list">
+    {{#each model itemController="dream"}}
+      {{partial 'dream'}}
+    {{else}}
+      <p>Sorry, no dreams available.</p>
+    {{/each}}
+    </section>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="moderate">
+    {{#if currentDream}}
+    <section class="moderation-box">
+      <header>
+        <p class="author">{{currentDream.author}}</p>
+        <p class="sex">{{currentDream.sex}}</p>
+      </header>
+      <p>{{currentDream.dream}}</p>
+      <footer>
+        <a {{action 'validateDream'}}>Yes</a> -
+        <a {{action 'refuseDream'}}>No</a>
+      </footer>
+    </section>
+    {{else}}
+    No dream to moderate.
+    {{/if}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="dream">
+    {{partial 'dream'}}
+
+    <section class="comments">
+      <h1>Leave a comment:</h1>
+      <section class="post-comments">
+        {{view Ember.TextArea valueBinding="comment_message"}}
+        <div class="pseudo">
+          Pseudo:
+          {{view Ember.TextField valueBinding="comment_author"}}
+          <button {{action 'postComment'}}>Create</button>
+        </div>
+        
+        {{#if errorComment}}
+          <p class="error">Fill in your pseudo and the comment.</p>
+        {{/if}}
+      </section>
+
+      <section class="comment-list">
+        {{#each comment in comments}}
+        <div class="comment">
+        <header>By {{comment.author}}</header>
+        <p>{{comment.message}}</p>
+        </div>
+        {{else}}
+        <p>No comments yet. Be the first!</p>
+        {{/each}}
+      </section>
+    </section>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_dream">
+    <article class="dream">
+      <p class="content">{{dream}}</p>
+      <footer>
+        <p>Posted by {{pseudo}}</p>
+        <a {{action 'niceAction'}}>Nice ({{nice}})</a> -
+        <a {{action 'boringAction'}}>Boring ({{boring}})</a> -
+        {{#linkTo 'dream' this}}{{comments.length}} comments{{/linkTo}}
+      </footer>
+    </article>
+  </script>
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+  <script src="js/libs/ember-latest.js"></script>
+  <script src="js/libs/ember-data-latest.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

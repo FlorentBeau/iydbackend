@@ -42,7 +42,7 @@ function serializeDream(dream) {
     visible: dream.visible,
     nice: dream.nice,
     boring: dream.boring,
-    comments: dream.comments
+    comment_ids: dream.comments
   };
 }
 
@@ -135,31 +135,41 @@ app.post('/comments', function(req, res) {
   });
 
   comment.save(function(err, c) {
-    Dream.findById(req.body.comment.dream_id, function(err, dream) {
-      dream.comments.push(c);
-
-      dream.save(function(err, d) {
+    Dream.findById(req.body.comment.dream_id, function(err, d) {
+      d.comments.push(c);
+      d.save(function(){
         res.send(JSON.stringify({
           comment: {
             id: comment._id,
             author: comment.author,
             message: comment.message
           }
-        }));
+       }));
       });
     });
   });
 });
 
 app.get('/comments', function(req, res) {
-  var dreamId = req.query.dream_id;
+  function serializeComment(comment) {
+    return {
+      id: comment.id,
+      author: comment.author,
+      message: comment.message
+    };
+  }
 
-  Dream
-  .findOne({_id: dreamId})
-  .populate('comments')
-  .exec(function(err, dream){
+  var ids = req.query.ids;
+  Comment
+  .find({ _id: { $in: ids }}, function(err, comments){
+    var answer = [];
+    comments.forEach(function(comment) {
+      answer.push(serializeComment(comment));
+    });
     res.send(JSON.stringify({
-      comments: dream.comments
+      comments: answer
     }));
   });
 });
+
+app.use(express.static(__dirname + '/public'));
