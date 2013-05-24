@@ -24,12 +24,12 @@ html, body {
   height: auto !important;
   height: 100%;
   min-height: 100%;
-  background-color: #FFF;
+  background-color: #000;
   margin-left: auto;
   margin-right: auto;
 /*    -moz-box-shadow: 10px 5px 5px black;
 -webkit-box-shadow: 10px 5px 5px black;*/
-        /*box-shadow: 0px 0px 30px black;*/
+        box-shadow: 0px 0px 30px black;
 }
 
 header.masthead {
@@ -53,7 +53,7 @@ header.masthead h2 {
 }
 
 header.masthead hgroup {
-  color: #000;
+  color: #FFF;
   text-align: center;
 }
 
@@ -97,6 +97,7 @@ article.dream {
 article.dream p {
   margin: 0;
   font-size: 17px;
+  color: #FFF;
 }
 
 article.dream p.content {
